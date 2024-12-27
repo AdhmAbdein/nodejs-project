@@ -3,14 +3,12 @@ const app = require('../app');
 
 let server;
 
-beforeAll(async () => {
-  // Start the server before tests
-  server = app.listen(0);
+beforeAll(done => {
+  server = app.listen(0, () => done()); // Bind to an available port dynamically
 });
 
-afterAll(async () => {
-  // Close the server after tests
-  await new Promise(resolve => server.close(resolve));
+afterAll(done => {
+  server.close(done); // Ensure the server is closed properly
 });
 
 describe('GET /', () => {
