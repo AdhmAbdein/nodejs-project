@@ -4,6 +4,8 @@ WORKDIR /app
 COPY ./project-code  /app
 
 RUN npm install
+RUN npm install supertest --save-dev
+
 CMD [ "npm", "start"]
 
 EXPOSE 3000 
