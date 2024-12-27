@@ -4,7 +4,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "jest --detectOpenHandles"
+    "test": "mocha"
   },
   "dependencies": {
     "express": "^4.17.3"

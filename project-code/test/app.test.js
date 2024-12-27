@@ -1,20 +1,19 @@
-const request = require('supertest');
-const app = require('../app');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('./app'); // Import the Express app
 
-let server; // Store the server instance
+chai.use(chaiHttp);
+const { expect } = chai;
 
-beforeAll(() => {
-  server = app.listen(3000); // Start the server
-});
-
-afterAll(() => {
-  server.close(); // Close the server after tests
-});
-
-describe('GET /', () => {
-  it('responds Hello I am Adham and this is nodejs website', async () => {
-    const response = await request(app).get('/');
-    expect(response.text).toBe('Hello I am Adham and this is nodejs website');
-  });
+describe('Express App Tests', () => {
+    it('should return "Hello I am Adham and this is nodejs website" on GET /', (done) => {
+        chai.request(app)
+            .get('/')
+            .end((err, res) => {
+                expect(res).to.have.status(200);
+                expect(res.text).to.equal('Hello I am Adham and this is nodejs website');
+                done();
+            });
+    });
 });
 
