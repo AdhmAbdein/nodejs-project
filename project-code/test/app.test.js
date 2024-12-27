@@ -1,20 +1,22 @@
 const request = require('supertest');
 const app = require('../app');
 
-let server; // Declare a variable to hold the server instance
+let server;
 
 beforeAll(() => {
-    server = app.listen(3000); // Start the server before tests
+  // Mock or override the server start logic to avoid starting it during tests.
+  server = app.listen(0); // Let the system choose an available port.
 });
 
-afterAll((done) => {
-    server.close(done); // Ensure the server is properly closed after tests
+afterAll(() => {
+  // Close the server after the tests are done to prevent the open handle issue.
+  server.close();
 });
 
 describe('GET /', () => {
-    it('responds Hello I am Adham and this is nodejs website', async () => {
-        const response = await request(app).get('/');
-        expect(response.text).toBe('Hello I am Adham and this is nodejs website');
-    });
+  it('responds Hello I am Adham and this is nodejs website', async () => {
+    const response = await request(app).get('/');
+    expect(response.text).toBe('Hello I am Adham and this is nodejs website');
+  });
 });
 
