@@ -3,7 +3,7 @@ WORKDIR /app
 
 COPY /adhamjenkins/nodejs-project/project-code  /app
 
-Run npm install
+RUN npm install
 CMD [ "npm", "start"]
 
 EXPOSE 3000 
