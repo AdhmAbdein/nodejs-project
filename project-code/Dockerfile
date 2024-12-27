@@ -4,7 +4,7 @@ WORKDIR /app
 COPY ./project-code  /app
 
 RUN npm install
-RUN npm install supertest --save-dev
+RUN npm install mocha supertest --save-dev
 
 CMD [ "npm", "start"]
 
