@@ -3,14 +3,14 @@ const app = require('../app');
 
 let server;
 
-beforeAll(() => {
-  // Mock or override the server start logic to avoid starting it during tests.
-  server = app.listen(0); // Let the system choose an available port.
+beforeAll((done) => {
+  // Start the server on an available port.
+  server = app.listen(0, done); // We use 'done' to ensure Jest waits for the server to start
 });
 
-afterAll(() => {
-  // Close the server after the tests are done to prevent the open handle issue.
-  server.close();
+afterAll((done) => {
+  // Close the server after the tests to avoid open handles.
+  server.close(done);  // Using 'done' ensures the server closes before Jest exits
 });
 
 describe('GET /', () => {
