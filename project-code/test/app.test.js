@@ -3,14 +3,14 @@ const app = require('../app');
 
 let server;
 
-beforeAll((done) => {
-  // Start the server on an available port.
-  server = app.listen(0, done); // We use 'done' to ensure Jest waits for the server to start
+beforeAll(async () => {
+  // Start the server before tests
+  server = app.listen(0);
 });
 
-afterAll((done) => {
-  // Close the server after the tests to avoid open handles.
-  server.close(done);  // Using 'done' ensures the server closes before Jest exits
+afterAll(async () => {
+  // Close the server after tests
+  await new Promise(resolve => server.close(resolve));
 });
 
 describe('GET /', () => {
