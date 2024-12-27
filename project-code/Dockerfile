@@ -1,7 +1,7 @@
 FROM node:16-alpine
 WORKDIR /app
 
-COPY /adhamjenkins/nodejs-project/project-code  /app
+COPY /nodejs-project/project-code  /app
 
 RUN npm install
 CMD [ "npm", "start"]
