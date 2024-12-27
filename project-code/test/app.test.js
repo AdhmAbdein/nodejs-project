@@ -1,14 +1,14 @@
 const request = require('supertest');
 const app = require('../app');
 
-let server;
+let server; // Store the server instance
 
-beforeAll(done => {
-  server = app.listen(0, () => done()); // Bind to an available port dynamically
+beforeAll(() => {
+  server = app.listen(3000); // Start the server
 });
 
-afterAll(done => {
-  server.close(done); // Ensure the server is closed properly
+afterAll(() => {
+  server.close(); // Close the server after tests
 });
 
 describe('GET /', () => {
