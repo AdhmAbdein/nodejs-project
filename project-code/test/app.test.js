@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../app'; // Import the Express app
+import app from '/app/app.js'; // Import the Express app
 
 chai.use(chaiHttp);
 const { expect } = chai;
